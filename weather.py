@@ -22,12 +22,18 @@ def report_daily(data, date):
     for key in data:
         if date == key[0:8]:
             m = calendar.month_name[int(date[4:6])] + str(int(date[6:8])), ", " + str(int(date[0:4]))
+        = key[8:10] + ":" + key[10:12] + ":" + key[12:14]
+        = data[key]['t']
+        = data[key]['h']
+        = data[key]['r']
+    display = display + f'{m<22}'  + f'{tm<10}' + f'{h>10}' + f'{r>10}'
+    display
 
 def report_historical(data):
     display = "================ HISTORICAL REPORT ====================\n"
     display += "                             Minimum     Maximum    Minimum    Maximum    Total\n"
-    display += "Date                   Temperature   Temperature   Humidity   Humidity  Rainfall\n"
-    display += "===========  =========  =========  =======    =======  ======\n"
+    display += "Date                   Temperature   Temperature  Humidity    Humidity    Rainfall\n"
+    display += "===========  =========  =========  =======  =======  =======\n"
 
     h = ' '
 
