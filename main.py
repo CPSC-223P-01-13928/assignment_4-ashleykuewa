@@ -1,21 +1,37 @@
-def read_data(filename):
-    return xyz
+from weather import *
+# import calendar
 
-def write_data(filename):
-    with open(filename, 'w') as f:
-        json.dump(data, f)
+myfile = "w.dat"
+mychoice = 0
 
-def max_temperature(data, date):
-    x = 0
-    for key in data:
-        if data == key[0:8]:
-            if data[key]['t'] > x:
-                x = data[key]['t']
-    return x
+while(True):
+    print("           ***TUFFY TITAN WEATHER LOGGER MAIN MENU***           ")
+    print( )
+    print("1. Set data Filename")
+    print("2. Add weather data")
+    print("3. Print Daily Report")
+    print("4. Print Historical Report")
+    print("9. Exit the program")
+    mychoice = input("Enter menu choice: ")
+    print( )
 
-def report_daily(data, date):
-    display = "==== daily ====\n
-    for key in data:
-        if date == key[0:8]:
-            m = calendar.month_name[int(date[4:6])] + str(int(date[6:8])), ", " + str(int(date[0:4]))
-
+    if mychoice == 1:
+        myfile = input("Enter data filename: ")
+        weather = read_data(myfile)
+    elif mychoice == 2:
+        dt =  input("Enter date: ")
+        tm = input("Enter time: ")
+        t = int(input("Enter temperature: "))
+        h = int(input("Enter humidity: "))
+        r = float(input("Enter the rainfall: "))
+        weather[dt+tm] = {'t':t, 'h':h, 'r':r}
+        write_data(data = weather, filename = myfile)
+    elif mychoice == 3:
+        d = input("Enter date: ")
+        display = report_daily(data = weather, date = d)
+        print(display)
+    elif mychoice == 4:
+        display = report_historical(weather)
+        print(display)
+    elif mychoice == 9:
+        break
