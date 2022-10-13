@@ -1,9 +1,10 @@
 from weather import *
 
-# import calendar
-myfile = "w.dat"
+myfile = "weather.dat"
+
 mychoice = 0
-while True:
+
+while(True):
     print("      *** TUFFY TITAN WEATHER LOGGER MAIN MENU")
     print()
     print("1. Set data filename")
@@ -14,23 +15,29 @@ while True:
     print()
     mychoice = int(input("Enter menu choice: "))
     print()
+
     if mychoice == 1:
-        myfile = input("Enter data filename: ")
-        weather = read_data(filename=myfile)
+        myfile = input("Enter Data Filename: ")
+        weather = read_data(filename = myfile)
+
     elif mychoice == 2:
         dt = input("Enter date: ")
         tm = input("Enter time: ")
         t = int(input("Enter temperature: "))
         h = int(input("Enter humidity: "))
-        r = float(input("Enter rainfall: "))
-        weather[dt + tm] = {"t": t, "h": h, "r": r}
-        write_data(data=weather, filename=myfile)
+        r = float(input("Enter the Rainfall: "))
+
+        weather[dt+tm] = {'t':t, 'h':h, 'r':r}
+        write_data(data = weather, filename = myfile)
+
     elif mychoice == 3:
         d = input("Enter date: ")
-        display = report_daily(data=weather, date=d)
+        display = report_daily(data = weather, date = d)
         print(display)
+    
     elif mychoice == 4:
-        display = report_historical(data=weather)
+        display = report_historical(data = weather)
         print(display)
+
     elif mychoice == 9:
         break
